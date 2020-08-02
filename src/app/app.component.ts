@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Math from './ExternalJs/math';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-root',
@@ -115,6 +116,25 @@ Gender = ${gender}`);
     -------------------`);
     this.getAdd(10,12);    
     console.log(`The sqrt is ${Math.sqrt(5)}`);
+    // 13. Promises
+    this.getCurrentDate(10000).then((msg)=>{
+      console.log("Actual Time from Promise",msg)
+    });
+    // 14. Built In Methods
+    
+    this.emp.map(data=>{
+      let x:any =[];x = data;
+      if(x.find(data.name === "vikram")){
+        return console.log("Usser from fin method",x);
+      }
+    })
+  }
+  getCurrentDate(timeout){
+    return new Promise((resolve, reject)=>{
+    let currDate = new Date();
+    console.log("Current Time Before triggering promise",currDate);
+      setTimeout(()=>resolve(`${Date()}`),timeout)
+    })
   }
   getAdd(x,y){
     console.log("The sum is",Math.add(x,y));
